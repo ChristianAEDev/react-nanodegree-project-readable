@@ -1,0 +1,114 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2017-08-07T18:37:41.403Z",
+	"__export_source": "insomnia.desktop.app:v5.7.4",
+	"resources": [
+		{
+			"_id": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"parentId": null,
+			"modified": 1502130508028,
+			"created": 1502130508028,
+			"name": "react-nanodegree-project-readable",
+			"description": "",
+			"certificates": [],
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_91a47133c9994ac4ab98fc6e8be7b308",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502130550992,
+			"created": 1502130550992,
+			"name": "Base Environment",
+			"data": {},
+			"color": null,
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_ad58debcff4242599978f13b8edb54ac",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502130575939,
+			"created": 1502130575939,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "req_054391b280fc4d5f9c7f72a88ec1af3e",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502130850314,
+			"created": 1502130550953,
+			"url": "localhost:5001/",
+			"name": "/",
+			"description": "Get the root path. THis will return a description of the available API actions.",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1502130550953,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_e4dcd2e51db34fe387b29a58f43c9b7a",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502130872458,
+			"created": 1502130662270,
+			"url": "localhost:5001/categories",
+			"name": "categories",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Authorization",
+					"value": "authrozation-header-value",
+					"id": "pair_486cc5dc279448c481ccaf720da0f9a4"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1502130662270,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_117b534482b0486da31ce6e55a6be44e",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502130754202,
+			"created": 1502130739491,
+			"url": "localhost:5001/posts",
+			"name": "posts",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Authorization",
+					"value": "authrozation-header-value",
+					"id": "pair_486cc5dc279448c481ccaf720da0f9a4"
+				},
+				{
+					"name": "",
+					"value": "",
+					"id": "pair_bef0be27c752428390b818a1a5308214"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1502130606611.5,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		}
+	]
+}
