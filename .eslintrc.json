@@ -1,25 +1,29 @@
 {
-    "extends": "airbnb",
-    "rules": {
-        "react/jsx-filename-extension": [
-            1,
-            {
-                "extensions": [
-                    ".js",
-                    ".jsx"
-                ]
-            }
-        ],
-        "require-jsdoc": [
-            "error",
-            {
-                "require": {
-                    "FunctionDeclaration": true,
-                    "MethodDefinition": false,
-                    "ClassDeclaration": true,
-                    "ArrowFunctionExpression": false
-                }
-            }
+  "extends": "airbnb",
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
         ]
-    }
+      }
+    ],
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": false,
+          "ClassDeclaration": true,
+          "ArrowFunctionExpression": false
+        }
+      }
+    ],
+    "arrow-body-style": [
+      "error",
+      "always"
+    ]
+  }
 }
