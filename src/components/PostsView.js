@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Dropdown, Grid, Header, Icon, Item, Label, List } from 'semantic-ui-react';
@@ -17,7 +18,23 @@ class PostsOverview extends Component {
   render() {
     const { sortPostsBy } = this.props.viewState;
     const { posts } = this.props;
-    
+
+    // Check if the URL contains a param for the categoryName. If so, we'll use it to filter the
+    // list of posts displayed in this component. (The params are provided by react-router.)
+    const { categoryName } = this.props.match.params;
+
+    // This variable holds the list of posts to filter. Depending on if we only want to show posts
+    // in a certain category, it will be filtered.
+    const postsToDisplay = posts.filter((post) => {
+      if (!categoryName) {
+        return post;
+      }
+      if (post.category === categoryName) {
+        return post;
+      }
+      return null;
+    });
+
     return (
       // Categories
       <Grid>
@@ -35,7 +52,9 @@ class PostsOverview extends Component {
               { /* TODO: Add better value for key  */ }
               return (
                 <List.Item key={category.name} >
-                  {category.name}
+                  <Link to={`/category/${category.name}`} >
+                    {category.name}
+                  </Link>
                 </List.Item>
               );
             })}
@@ -65,7 +84,7 @@ class PostsOverview extends Component {
             {
               // TODO: Check if there is a better way to sort the array by their voteScore.
               // Ideally without the need of a third party library.
-              _.reverse(_.sortBy(posts, [sortPostsBy])).map((post) => {
+              _.reverse(_.sortBy(postsToDisplay, [sortPostsBy])).map((post) => {
                 return (
                   <Item key={post.id}>
                     <Item.Content>
@@ -93,11 +112,12 @@ class PostsOverview extends Component {
 // TODO: eslint rules disabled
 PostsOverview.propTypes = {
   categories: PropTypes.array.isRequired,  // eslint-disable-line react/forbid-prop-types
+  categoryName: PropTypes.string,
   posts: PropTypes.array.isRequired,  // eslint-disable-line react/forbid-prop-types
   getCategories: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
   sortPostsBy: PropTypes.func.isRequired,
-  viewState: PropTypes.object.isRequired,
+  viewState: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 /**
