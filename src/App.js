@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Container, Image, Menu } from 'semantic-ui-react';
 
-import PostsOverview from './components/PostsOverview';
+import PostsCategoryView from './components/PostsCategoryView';
+import PostsView from './components/PostsView';
 
 /**
  * Class representing the entry point of the application. It is responsible to display elements
  * that are displayed on all pages (i.e. Menubar) and for routing to the correct page.
  */
 class App extends Component {
-
   render() {
     return (
       <div>
@@ -28,7 +28,8 @@ class App extends Component {
         </Menu>
         <Container text style={{ marginTop: '7em' }}>
           <Switch>
-            <Route path="/" component={PostsOverview} />
+            <Route path="/category/:categoryName" component={PostsView} />
+            <Route path="/" component={PostsView} />
           </Switch>
         </Container>
       </div>
