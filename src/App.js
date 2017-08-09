@@ -1,15 +1,37 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { Container, Image, Menu } from 'semantic-ui-react';
 
 import PostsOverview from './components/PostsOverview';
 
+/**
+ * Class representing the entry point of the application. It is responsible to display elements
+ * that are displayed on all pages (i.e. Menubar) and for routing to the correct page.
+ */
 class App extends Component {
 
   render() {
     return (
-      <Switch>
-        <Route path="/" component={PostsOverview} />
-      </Switch>
+      <div>
+        <Menu fixed="top" inverted>
+          <Container>
+            <Menu.Item as="a" header>
+              <Image
+                size="mini"
+                src="/logo.svg"
+                style={{ marginRight: '1.5em' }}
+              />
+              Readable
+        </Menu.Item>
+            <Menu.Item as="a">Home</Menu.Item>
+          </Container>
+        </Menu>
+        <Container text style={{ marginTop: '7em' }}>
+          <Switch>
+            <Route path="/" component={PostsOverview} />
+          </Switch>
+        </Container>
+      </div>
     );
   }
 }
