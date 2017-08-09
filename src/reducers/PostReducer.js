@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, GET_POSTS } from '../actions';
+import { GET_POSTS } from '../actions';
 
 /**
  * Handles the data coming from an action creating a new state from it. Since the state is never to
