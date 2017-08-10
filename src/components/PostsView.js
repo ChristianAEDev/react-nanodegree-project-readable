@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Dropdown, Grid, Header, Icon, Item, Label, List } from 'semantic-ui-react';
+import { Button, Container, Dropdown, Grid, Header, Icon, Item, Label, List, Menu } from 'semantic-ui-react';
 import { getCategories, getPosts } from '../actions';
 import { sortPostsBy } from '../actions/ViewStateActions';
 
@@ -43,13 +43,12 @@ class PostsOverview extends Component {
             <Icon name="bookmark" />
             <Header.Content>Categories
               <Header.Subheader>
-                Manage your categories
+                Choose a category
               </Header.Subheader>
             </Header.Content>
           </Header>
           <List>
             {this.props.categories.map((category) => {
-              { /* TODO: Add better value for key  */ }
               return (
                 <List.Item key={category.name} >
                   <Link to={`/category/${category.name}`} >
@@ -62,24 +61,37 @@ class PostsOverview extends Component {
         </Grid.Column>
         {/* Posts  */}
         <Grid.Column width={10}>
-          <Dropdown text="Sort by" icon="sort" >
-            <Dropdown.Menu>
-              {/* TODO: Add an icon to indicate what sort is used and how its currently
+          <Menu secondary>
+            <Menu.Item >
+              <Container>
+                <Link to="/post">
+                  <Button icon="add" primary content="New Post" />
+                </Link>
+              </Container>
+            </Menu.Item>
+            <Menu.Menu position="right">
+              <Menu.Item>
+                <Dropdown text="Sort by" icon="sort" >
+                  <Dropdown.Menu>
+                    {/* TODO: Add an icon to indicate what sort is used and how its currently
                 sorted  */}
-              <Dropdown.Item
-                value="voteScore"
-                text="Score"
-                active={sortPostsBy === 'voteScore'}
-                onClick={(event, data) => { this.props.sortPostsBy(data.value); }}
-              />
-              <Dropdown.Item
-                value="timestamp"
-                text="Date"
-                active={sortPostsBy === 'timestamp'}
-                onClick={(event, data) => { this.props.sortPostsBy(data.value); }}
-              />
-            </Dropdown.Menu>
-          </Dropdown>
+                    <Dropdown.Item
+                      value="voteScore"
+                      text="Score"
+                      active={sortPostsBy === 'voteScore'}
+                      onClick={(event, data) => { this.props.sortPostsBy(data.value); }}
+                    />
+                    <Dropdown.Item
+                      value="timestamp"
+                      text="Date"
+                      active={sortPostsBy === 'timestamp'}
+                      onClick={(event, data) => { this.props.sortPostsBy(data.value); }}
+                    />
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Menu.Item>
+            </Menu.Menu>
+          </Menu>
           <Item.Group divided>
             {
               // TODO: Check if there is a better way to sort the array by their voteScore.

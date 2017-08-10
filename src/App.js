@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import { Container, Image, Menu } from 'semantic-ui-react';
 
+import PostView from './components/PostView';
 import PostsView from './components/PostsView';
 
 /**
@@ -14,20 +15,22 @@ class App extends Component {
       <div>
         <Menu fixed="top" inverted>
           <Container>
-            <Menu.Item as="a" header>
-              <Image
-                size="mini"
-                src="/logo.svg"
-                style={{ marginRight: '1.5em' }}
-              />
-              Readable
-        </Menu.Item>
-            <Menu.Item as="a">Home</Menu.Item>
+            <Link to="/">
+              <Menu.Item header>
+                <Image
+                  size="mini"
+                  src="/logo.svg"
+                  style={{ marginRight: '1.5em' }}
+                />
+                Readable
+            </Menu.Item>
+            </Link>
           </Container>
         </Menu>
         <Container text style={{ marginTop: '7em' }}>
           <Switch>
             <Route path="/category/:categoryName" component={PostsView} />
+            <Route path="/post" component={PostView} />
             <Route path="/" component={PostsView} />
           </Switch>
         </Container>
