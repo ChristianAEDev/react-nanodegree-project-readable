@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2017-08-09T12:27:25.758Z",
+	"__export_date": "2017-08-12T19:28:10.942Z",
 	"__export_source": "insomnia.desktop.app:v5.7.4",
 	"resources": [
 		{
@@ -82,7 +82,7 @@
 		{
 			"_id": "req_117b534482b0486da31ce6e55a6be44e",
 			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
-			"modified": 1502130754202,
+			"modified": 1502281741181,
 			"created": 1502130739491,
 			"url": "localhost:5001/posts",
 			"name": "posts",
@@ -95,11 +95,6 @@
 					"name": "Authorization",
 					"value": "authrozation-header-value",
 					"id": "pair_486cc5dc279448c481ccaf720da0f9a4"
-				},
-				{
-					"name": "",
-					"value": "",
-					"id": "pair_bef0be27c752428390b818a1a5308214"
 				}
 			],
 			"authentication": {},
@@ -113,7 +108,7 @@
 		{
 			"_id": "req_438c18748567485bba78d77a0a966dd3",
 			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
-			"modified": 1502281611190,
+			"modified": 1502289685540,
 			"created": 1502281501148,
 			"url": "localhost:5001/posts",
 			"name": "addPost",
@@ -121,7 +116,7 @@
 			"method": "POST",
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\t\"id\": \"8xf0y6ziyjabvozdd253sd\",\n\t\t\"timestamp\": 1467166872634,\n\t\t\"title\": \"Post with awesome rating\",\n\t\t\"body\": \"This is the highest rated post ever!\",\n\t\t\"author\": \"Christian\",\n\t\t\"category\": \"react\",\n\t\t\"voteScore\": 16,\n\t\t\"deleted\": false\n}"
+				"text": "{\n\t\t\"id\": \"8xf0y6ziyjabvosdd253sd\",\n\t\t\"timestamp\": 1467166872634,\n\t\t\"title\": \"Antonieta is awesome!\",\n\t\t\"body\": \"Is she? Yes, she is!\",\n\t\t\"author\": \"Antonieta\",\n\t\t\"category\": \"react\",\n\t\t\"voteScore\": 9,\n\t\t\"deleted\": false\n}"
 			},
 			"parameters": [],
 			"headers": [
@@ -131,11 +126,6 @@
 					"id": "pair_486cc5dc279448c481ccaf720da0f9a4"
 				},
 				{
-					"name": "",
-					"value": "",
-					"id": "pair_bef0be27c752428390b818a1a5308214"
-				},
-				{
 					"name": "Content-Type",
 					"value": "application/json",
 					"id": "pair_e1f9768819814b6dbd29220e75d9f014"
@@ -143,6 +133,32 @@
 			],
 			"authentication": {},
 			"metaSortKey": -1502130578782.25,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_dfb69d5f159042bea4a1ac8564e7a750",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502566079685,
+			"created": 1502566059416,
+			"url": "localhost:5001/posts/8xf0y6ziyjabvozdd253nd",
+			"name": "post",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Authorization",
+					"value": "authrozation-header-value",
+					"id": "pair_486cc5dc279448c481ccaf720da0f9a4"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1502130592696.875,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
 			"settingDisableRenderRequestBody": false,

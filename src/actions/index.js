@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const ADD_POST = 'ADD_POST';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_POST = 'GET_POST';
 export const GET_POSTS = 'GET_POSTS';
 
 const ENDPOINT_URL = 'http://localhost:5001';
@@ -20,6 +21,15 @@ export function getCategories() {
 
   return {
     type: GET_CATEGORIES,
+    payload: request,
+  };
+}
+
+export function getPost(postID) {
+  const request = axios.get(`${ENDPOINT_URL}/posts/${postID}`, config);
+  
+  return {
+    type: GET_POST,
     payload: request,
   };
 }

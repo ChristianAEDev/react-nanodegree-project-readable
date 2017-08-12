@@ -30,6 +30,7 @@ class App extends Component {
         <Container text style={{ marginTop: '7em' }}>
           <Switch>
             <Route path="/category/:categoryName" component={PostsView} />
+            <Route path="/post/:postID" component={PostView} />
             <Route path="/post" component={PostView} />
             <Route path="/" component={PostsView} />
           </Switch>

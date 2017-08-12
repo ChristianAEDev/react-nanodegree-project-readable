@@ -63,13 +63,11 @@ class PostsOverview extends Component {
         <Grid.Column width={10}>
           <Menu secondary>
             <Menu.Item >
-              <Container>
-                <Link to="/post">
-                  <Button icon="add" primary content="New Post" />
-                </Link>
-              </Container>
+              <Link to="/post">
+                <Button icon="add" primary content="New Post" />
+              </Link>
             </Menu.Item>
-            <Menu.Menu position="right">
+            <Menu.Menu position='right'>
               <Menu.Item>
                 <Dropdown text="Sort by" icon="sort" >
                   <Dropdown.Menu>
@@ -100,7 +98,9 @@ class PostsOverview extends Component {
                 return (
                   <Item key={post.id}>
                     <Item.Content>
-                      <Item.Header as="a">{post.title}</Item.Header>
+                      <Link to={`/post/${post.id}`}>
+                        <Item.Header as="h3" >{post.title}</Item.Header>
+                      </Link>
                       <Item.Meta>
                         <span className="cinema">{moment(post.timestamp).format('MMMM Do YYYY, hh:mm:ss')} by {post.author}</span>
                       </Item.Meta>
