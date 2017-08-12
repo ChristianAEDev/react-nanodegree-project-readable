@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const ADD_POST = 'ADD_POST';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_COMMENTS = 'GET_COMMENTS';
 export const GET_POST = 'GET_POST';
 export const GET_POSTS = 'GET_POSTS';
 
@@ -25,9 +26,18 @@ export function getCategories() {
   };
 }
 
+export function getComments(postID) {
+  const request = axios.get(`${ENDPOINT_URL}/posts/${postID}/comments`, config);
+
+  return {
+    type: GET_COMMENTS,
+    payload: request,
+  };
+}
+
 export function getPost(postID) {
   const request = axios.get(`${ENDPOINT_URL}/posts/${postID}`, config);
-  
+
   return {
     type: GET_POST,
     payload: request,
