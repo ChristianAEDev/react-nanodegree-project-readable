@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const ADD_POST = 'ADD_POST';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const GET_POST = 'GET_POST';
@@ -16,6 +17,15 @@ export function addComment(comment) {
 
   return {
     type: ADD_COMMENT,
+    payload: request,
+  };
+}
+
+export function deleteComment(id) {
+  const request = axios.delete(`${ENDPOINT_URL}/comments/${id}`, config);
+
+  return {
+    type: DELETE_COMMENT,
     payload: request,
   };
 }

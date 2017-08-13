@@ -1,12 +1,9 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import moment from 'moment';
-import { Button, Comment, Dropdown, Form, Header, Icon, Menu } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import Comments from './Comments';
 import { getComments, getPost } from '../actions';
-import { sortPostsBy } from '../actions/ViewStateActions';
 
 class PostView extends Component {
 
@@ -23,8 +20,6 @@ class PostView extends Component {
 
   render() {
     const postID = this.props.initialValues.id;
-    const { sortPostsBy } = this.props.viewState;
-
 
     return (
       <div>
@@ -118,7 +113,7 @@ function mapStateToProps(state) {
  * Hook everything up. It is important to first call "connect" and only than "reduxForm". Otherwise
  * setting "initialValues" will not work!
  */
-export default connect(mapStateToProps, { getComments, getPost, sortPostsBy })(reduxForm({
+export default connect(mapStateToProps, { getComments, getPost })(reduxForm({
   validate,
   form: 'PostForm', // a unique identifier for this form
   enableReinitialize: true,

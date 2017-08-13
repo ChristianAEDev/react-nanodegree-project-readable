@@ -1,4 +1,4 @@
-import { ADD_COMMENT, GET_COMMENTS, GET_POST } from '../actions';
+import { ADD_COMMENT, DELETE_COMMENT, GET_COMMENTS, GET_POST } from '../actions';
 
 /**
  * Handles the data coming from an action creating a new state from it. Since the state is never to
@@ -15,6 +15,17 @@ export default function (state = [], action) {
       return {
         ...state,
         comments: [...state.comments, action.payload.data],
+      };
+    case DELETE_COMMENT:
+      if (action && action.error) {
+        return state;
+      }
+      return {
+        ...state,
+        // comments: _.omit(...state.comments, action.payload.data),
+        comments: state.comments.filter(
+          (comment) => { return comment.id !== action.payload.data.id; },
+        ),
       };
     case GET_COMMENTS:
       if (action && action.error) {

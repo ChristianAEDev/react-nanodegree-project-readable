@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import moment from 'moment';
 import shortid from 'shortid';
 import { Button, Comment, Dropdown, Form, Header, Icon, Menu } from 'semantic-ui-react';
-import { addComment, getComments } from '../actions';
+import { addComment, deleteComment, getComments } from '../actions';
 import { sortPostsBy } from '../actions/ViewStateActions';
 
 
@@ -71,6 +71,9 @@ class Comments extends Component {
                 </Comment.Metadata>
                 <Comment.Text>{comment.body}</Comment.Text>
               </Comment.Content>
+              <Comment.Actions>
+                <Comment.Action onClick={() => {this.props.deleteComment(comment.id)}} >Delete</Comment.Action>
+              </Comment.Actions>
             </Comment>
           );
         })
@@ -119,7 +122,7 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { addComment, getComments, sortPostsBy })(reduxForm({
+export default connect(mapStateToProps, { addComment, deleteComment, getComments, sortPostsBy })(reduxForm({
   validate,
   form: 'CommentForm', // a unique identifier for this form
 })(Comments));

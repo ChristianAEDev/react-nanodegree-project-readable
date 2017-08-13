@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import shortid from 'shortid';
-import { Button, Container, Dropdown, Grid, Header, Icon, Item, Label, List, Menu } from 'semantic-ui-react';
+import { Button, Dropdown, Grid, Header, Icon, Item, Label, List, Menu } from 'semantic-ui-react';
 import { getCategories, getPosts } from '../actions';
 import { sortPostsBy } from '../actions/ViewStateActions';
 
