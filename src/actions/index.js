@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+export const ADD_COMMENT = 'ADD_COMMENT';
 export const ADD_POST = 'ADD_POST';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_COMMENTS = 'GET_COMMENTS';
@@ -10,10 +11,12 @@ const ENDPOINT_URL = 'http://localhost:5001';
 const token = 'authrozation-header-value';
 const config = { headers: { Authorization: token } };
 
-export function addPost(post) {
+export function addComment(comment) {
+  const request = axios.post(`${ENDPOINT_URL}/comments`, comment, config);
+
   return {
-    type: ADD_POST,
-    payload: post,
+    type: ADD_COMMENT,
+    payload: request,
   };
 }
 

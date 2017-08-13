@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import shortid from 'shortid';
 import { Button, Container, Dropdown, Grid, Header, Icon, Item, Label, List, Menu } from 'semantic-ui-react';
 import { getCategories, getPosts } from '../actions';
 import { sortPostsBy } from '../actions/ViewStateActions';
@@ -50,7 +51,7 @@ class PostsOverview extends Component {
           <List>
             {this.props.categories.map((category) => {
               return (
-                <List.Item key={category.name} >
+                <List.Item key={shortid.generate()} >
                   <Link to={`/category/${category.name}`} >
                     {category.name}
                   </Link>
@@ -67,7 +68,7 @@ class PostsOverview extends Component {
                 <Button icon="add" primary content="New Post" />
               </Link>
             </Menu.Item>
-            <Menu.Menu position='right'>
+            <Menu.Menu position="right">
               <Menu.Item>
                 <Dropdown text="Sort by" icon="sort" >
                   <Dropdown.Menu>

@@ -1,4 +1,4 @@
-import { GET_COMMENTS, GET_POST } from '../actions';
+import { ADD_COMMENT, GET_COMMENTS, GET_POST } from '../actions';
 
 /**
  * Handles the data coming from an action creating a new state from it. Since the state is never to
@@ -8,6 +8,14 @@ import { GET_COMMENTS, GET_POST } from '../actions';
  */
 export default function (state = [], action) {
   switch (action.type) {
+    case ADD_COMMENT:
+      if (action && action.error) {
+        return state;
+      }
+      return {
+        ...state,
+        comments: [...state.comments, action.payload.data],
+      };
     case GET_COMMENTS:
       if (action && action.error) {
         return state;
