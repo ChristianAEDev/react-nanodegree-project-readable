@@ -12,7 +12,6 @@ export default function (state = [], action) {
       if (action && action.error) {
         return state;
       }
-      console.log(GET_COMMENTS, action.payload.data)
       return {
         ...state,
         comments: action.payload.data,

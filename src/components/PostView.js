@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import moment from 'moment';
-import { Comment, Container, Dropdown, Form, Grid, Header, Icon, Menu } from 'semantic-ui-react';
+import { Button, Comment, Dropdown, Form, Header, Icon, Menu } from 'semantic-ui-react';
 import { addPost, getComments, getPost } from '../actions';
 import { sortPostsBy } from '../actions/ViewStateActions';
 
@@ -26,58 +26,60 @@ class PostView extends Component {
     const { sortPostsBy } = this.props.viewState;
 
     return (
-      <Form onSubmit={() => { return console.log('onSubmit'); }}>
-        <Form.Field>
-          <label>Title</label>
-          <div>
-            <Field
-              name="title"
-              component="input"
-              type="text"
-              placeholder="First Name"
-            />
-          </div>
-        </Form.Field>
-        <Form.Field>
-          <label>Body</label>
-          <div>
-            <Field name="body" component="textarea" />
-          </div>
-        </Form.Field>
-        <Form.Field>
-          <label>Author</label>
-          <div>
-            <Field
-              name="author"
-              component="input"
-              type="text"
-              placeholder="Last Name"
-            />
-          </div>
-        </Form.Field>
-        <Form.Field disabled>
-          <label>Timestamp</label>
-          <div>
-            <Field
-              name="timestamp"
-              component="input"
-              type="text"
-              placeholder="Last Name"
-            />
-          </div>
-        </Form.Field>
-        <Form.Field>
-          <label>Score</label>
-          <div>
-            <Field
-              name="voteScore"
-              component="input"
-              type="text"
-              placeholder="Last Name"
-            />
-          </div>
-        </Form.Field>
-        <Form.Button primary>Save</Form.Button>
+      <div>
+        <Form onSubmit={() => { return console.log('onSubmit'); }}>
+          <Form.Field>
+            <label>Title</label>
+            <div>
+              <Field
+                name="title"
+                component="input"
+                type="text"
+                placeholder="First Name"
+              />
+            </div>
+          </Form.Field>
+          <Form.Field>
+            <label>Body</label>
+            <div>
+              <Field name="body" component="textarea" />
+            </div>
+          </Form.Field>
+          <Form.Field>
+            <label>Author</label>
+            <div>
+              <Field
+                name="author"
+                component="input"
+                type="text"
+                placeholder="Last Name"
+              />
+            </div>
+          </Form.Field>
+          <Form.Field disabled>
+            <label>Timestamp</label>
+            <div>
+              <Field
+                name="timestamp"
+                component="input"
+                type="text"
+                placeholder="Last Name"
+              />
+            </div>
+          </Form.Field>
+          <Form.Field>
+            <label>Score</label>
+            <div>
+              <Field
+                name="voteScore"
+                component="input"
+                type="text"
+                placeholder="Last Name"
+              />
+            </div>
+          </Form.Field>
+          <Form.Button primary>Save</Form.Button>
+        </Form>
         <Comment.Group>
           <Header dividing>
             <Header.Content as="h3">
@@ -117,9 +119,12 @@ class PostView extends Component {
             );
           })
           }
+          <Form reply>
+            <Form.TextArea />
+            <Button content="Add Comment" labelPosition="left" icon="edit" primary />
+          </Form>
         </Comment.Group>
-      </Form>
-
+      </div>
     );
   }
 }
