@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2017-08-13T19:54:38.223Z",
+	"__export_date": "2017-08-14T17:40:00.770Z",
 	"__export_source": "insomnia.desktop.app:v5.7.4",
 	"resources": [
 		{
@@ -228,9 +228,9 @@
 		{
 			"_id": "req_791ca11b79fc47e1b3dad3694fe26b96",
 			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
-			"modified": 1502654057374,
+			"modified": 1502654672024,
 			"created": 1502654001847,
-			"url": "localhost:5001/comments/SJlP5m0DZ",
+			"url": "localhost:5001/comments/8tu4bsun805n8un48ve89",
 			"name": "delete comment",
 			"description": "",
 			"method": "DELETE",
@@ -245,6 +245,40 @@
 			],
 			"authentication": {},
 			"metaSortKey": -1502130582260.9062,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_deea2e07367c4ceba622e519c38d8252",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502732081881,
+			"created": 1502731975402,
+			"url": "localhost:5001/comments/894tuq4ut84ut8v4t8wun89g",
+			"name": "update comment",
+			"description": "",
+			"method": "PUT",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\t\t\n\t\t\"timestamp\": 1502571966000,\n\t\t\"body\": \"Edited comment\"\n\t}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Authorization",
+					"value": "authrozation-header-value",
+					"id": "pair_486cc5dc279448c481ccaf720da0f9a4"
+				},
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_e1f9768819814b6dbd29220e75d9f014"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1502130557910.3125,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
 			"settingDisableRenderRequestBody": false,

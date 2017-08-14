@@ -5,8 +5,8 @@ import { Field, reduxForm } from 'redux-form';
 import moment from 'moment';
 import shortid from 'shortid';
 import { Button, Comment, Dropdown, Form, Header, Icon, Menu } from 'semantic-ui-react';
-import { addComment, deleteComment, getComments } from '../actions';
-import { sortPostsBy } from '../actions/ViewStateActions';
+import { addComment, deleteComment, getComments, updateComment } from '../actions';
+import { setCommentButtonMode, sortPostsBy } from '../actions/ViewStateActions';
 
 
 class Comments extends Component {
@@ -19,22 +19,35 @@ class Comments extends Component {
 
   onSubmit(values) {
     const { postID } = this.props;
+    console.log(values.id)
+    // If we have an ID it is an existing comment that needs to be updated
+    if (values.id) {
+      this.props.updateComment(values);
+    } else {
+      // Assign an ID to the new comment
+      values.id = shortid.generate();
+      // Set the parentID. It is the id of the post it belongs to
+      values.parentId = postID;
+      // Otherwise it is a new comment to save
+      this.props.addComment(values);
+    }
+  }
 
-    // Assign an ID to the new comment
-    values.id = shortid.generate();
-    // Set the parentID. It is the id of the post it belongs to
-    values.parentId = postID;
+  onEdit(comment) {
+    this.props.change('body', comment.body);
+    this.props.change('author', comment.author);
 
-    // The second argument, a callback (see /actions/index.js for the implementation",
-    // is executed when the createPost action was executed successfully
-    this.props.addComment(values);
+    this.props.setCommentButtonMode('edit');
   }
 
   render() {
     // "handleSubmit" comes from redux-form
     const { handleSubmit } = this.props;
     const { comments } = this.props.post;
-    const { sortPostsBy } = this.props.viewState;
+    const { sortPostsBy, commentsButtonMode } = this.props.viewState;
+
+    console.log(this.props.form);
+
     return (
       <Comment.Group>
         <Header dividing>
@@ -72,16 +85,22 @@ class Comments extends Component {
                 <Comment.Text>{comment.body}</Comment.Text>
               </Comment.Content>
               <Comment.Actions>
-                <Comment.Action onClick={() => {this.props.deleteComment(comment.id)}} >Delete</Comment.Action>
+                <Comment.Action onClick={() => { this.onEdit(comment); }} >
+                  Edit
+                </Comment.Action>
+                <Comment.Action onClick={() => { this.props.deleteComment(comment.id); }} >
+                  Delete
+                </Comment.Action>
               </Comment.Actions>
             </Comment>
           );
         })
         }
-        {/* redux-form just handles state and validation. It is not responsible for the actually submit(saving the data(POST))
-            "handleSubmit" is the function in redux-form that calls our function "this.onSubmit" when the validation is positive
-            and the data from the form can be saved/submitted. (".bind(this)" ensures that we have the correct context (this component)
-            inside of "onSubmit" available.) */}
+        {/* redux-form just handles state and validation. It is not responsible for the actually
+            submit(saving the data(POST))"handleSubmit" is the function in redux-form that calls
+            our function "this.onSubmit" when the validation is positive and the data from the form
+            can be saved/submitted. (".bind(this)" ensures that we have the correct context (this
+            component) inside of "onSubmit" available.) */}
         <Form reply onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Form.Field >
             <Field
@@ -99,7 +118,20 @@ class Comments extends Component {
               placeholder="Author"
             />
           </Form.Field>
-          <Button content="Add Comment" labelPosition="left" icon="edit" primary />
+          {commentsButtonMode === 'add' &&
+            <Button
+              content="Add"
+              labelPosition="left"
+              icon="add"
+              color="green"
+            />}
+          {commentsButtonMode === 'edit' &&
+            <Button
+              content="Save"
+              labelPosition="left"
+              icon="edit"
+              color="yellow"
+            />}
         </Form>
       </Comment.Group>
     );
@@ -122,7 +154,16 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { addComment, deleteComment, getComments, sortPostsBy })(reduxForm({
+export default connect(mapStateToProps,
+  {
+    addComment,
+    deleteComment,
+    getComments,
+    setCommentButtonMode,
+    sortPostsBy,
+    updateComment,
+  },
+)(reduxForm({
   validate,
   form: 'CommentForm', // a unique identifier for this form
 })(Comments));

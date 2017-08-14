@@ -1,4 +1,4 @@
-import { ADD_COMMENT, DELETE_COMMENT, GET_COMMENTS, GET_POST } from '../actions';
+import { ADD_COMMENT, DELETE_COMMENT, GET_COMMENTS, GET_POST, UPDATE_COMMENT } from '../actions';
 
 /**
  * Handles the data coming from an action creating a new state from it. Since the state is never to
@@ -42,6 +42,22 @@ export default function (state = [], action) {
         return state;
       }
       return action.payload.data;
+    case UPDATE_COMMENT:
+      const updatedComment = action.payload;
+
+      console.log("updateCOmment", updatedComment);
+
+
+      return {
+        ...state,
+        comments: state.comments.map((comment) => {
+          if (updatedComment.id === comment.id) {
+            comment.timestamp = updatedComment.timestamp;
+            comment.body = updatedComment.body;
+          }
+          return comment;
+        }),
+      };
     default:
       return state;
   }
