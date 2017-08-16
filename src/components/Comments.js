@@ -22,6 +22,10 @@ class Comments extends Component {
     // If we have an ID it is an existing comment that needs to be updated
     if (values.id) {
       this.props.updateComment(values);
+      // Cleanup after theupdate
+      this.props.change('id', '');
+      this.props.change('body', '');
+      this.props.setCommentButtonMode('add');
     } else {
       // Assign an ID to the new comment
       values.id = shortid.generate();
