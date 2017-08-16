@@ -9,6 +9,7 @@ export const GET_COMMENTS = 'GET_COMMENTS';
 export const GET_POST = 'GET_POST';
 export const GET_POSTS = 'GET_POSTS';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
+export const UPDATE_POST = 'UPDATE_POST';
 
 const ENDPOINT_URL = 'http://localhost:5001';
 const token = 'authrozation-header-value';
@@ -89,6 +90,21 @@ export function updateComment(comment) {
 
   return {
     type: UPDATE_COMMENT,
+    payload: request,
+  };
+}
+
+export function updatePost(post) {
+  // The server only expects a timestamp and body
+  const data = {
+    title: post.title,
+    body: post.body,
+  };
+
+  const request = axios.put(`${ENDPOINT_URL}/posts/${post.id}`, data, config);
+
+  return {
+    type: UPDATE_POST,
     payload: request,
   };
 }

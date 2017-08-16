@@ -5,6 +5,7 @@ import {
   GET_COMMENTS,
   GET_POST,
   UPDATE_COMMENT,
+  UPDATE_POST,
 } from '../actions';
 
 /**
@@ -55,7 +56,7 @@ export default function (state = [], action) {
         return state;
       }
       return action.payload.data;
-    case UPDATE_COMMENT:
+    case UPDATE_COMMENT: {
       const updatedComment = action.payload.data;
       return {
         ...state,
@@ -65,7 +66,12 @@ export default function (state = [], action) {
           }
           return comment;
         }),
-      };
+      }; }
+    case UPDATE_POST: {
+      const updatedPost = action.payload.data;
+      // Keep the comments
+      updatedPost.comments = state.comments;
+      return updatedPost; }
     default:
       return state;
   }

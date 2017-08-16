@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Form } from 'semantic-ui-react';
 import Comments from './Comments';
-import { deletePost, getComments, getPost } from '../actions';
+import { deletePost, getComments, getPost, updatePost } from '../actions';
 
 class PostView extends Component {
 
@@ -24,6 +24,8 @@ class PostView extends Component {
       deletePost(values.id);
       // Navigate to the main page after deleting the post
       this.props.history.push('/');
+    } else {
+      this.props.updatePost(values);
     }
   }
 
@@ -148,8 +150,12 @@ function mapStateToProps(state) {
  * Hook everything up. It is important to first call "connect" and only than "reduxForm". Otherwise
  * setting "initialValues" will not work!
  */
-export default connect(mapStateToProps, { getComments, getPost })(reduxForm({
-  validate,
-  form: 'PostForm', // a unique identifier for this form
-  enableReinitialize: true,
-})(PostView));
+export default connect(mapStateToProps, {
+  deletePost,
+  getComments,
+  getPost,
+  updatePost })(reduxForm({
+    validate,
+    form: 'PostForm', // a unique identifier for this form
+    enableReinitialize: true,
+  })(PostView));

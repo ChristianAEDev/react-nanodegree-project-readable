@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2017-08-16T16:26:48.885Z",
+	"__export_date": "2017-08-16T17:07:03.999Z",
 	"__export_source": "insomnia.desktop.app:v5.7.4",
 	"resources": [
 		{
@@ -305,6 +305,40 @@
 			],
 			"authentication": {},
 			"metaSortKey": -1502130580521.5781,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_11d402168f184285a7ea6d18f7b17f40",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502903207473,
+			"created": 1502902981640,
+			"url": "localhost:5001/posts/8xf0y6ziyjabvozdd253nd",
+			"name": "update post",
+			"description": "",
+			"method": "PUT",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\t\t\n\t\t\"title\": \"Updated title\",\n\t\t\"body\": \"Edited body\"\n\t}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Authorization",
+					"value": "authrozation-header-value",
+					"id": "pair_486cc5dc279448c481ccaf720da0f9a4"
+				},
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_e1f9768819814b6dbd29220e75d9f014"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1502130554431.6562,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
 			"settingDisableRenderRequestBody": false,
