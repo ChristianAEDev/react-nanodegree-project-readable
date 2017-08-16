@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import shortid from 'shortid';
 import { Button, Dropdown, Grid, Header, Icon, Item, Label, List, Menu } from 'semantic-ui-react';
-import { getCategories, getPosts } from '../actions';
+import { getCategories, getPosts, voteOnPost } from '../actions';
 import { sortPostsBy } from '../actions/ViewStateActions';
 
 class PostsOverview extends Component {
@@ -113,6 +113,17 @@ class PostsOverview extends Component {
                       <Item.Extra>
                         <Label>{post.category}</Label>
                         {post.voteScore}<Icon color="yellow" name="star" />
+                        <Icon
+                          name="like outline"
+                          color="green"
+                          onClick={() => { this.props.voteOnPost('upVote', post.id) }}
+                        />
+                        <Icon
+                          name="dislike outline"
+                          color="red"
+                          style={{ cursor: 'pointer' }}
+                          onClick={() => { this.props.voteOnPost('downVote', post.id) }}
+                        />
                       </Item.Extra>
                     </Item.Content>
                   </Item>
@@ -149,4 +160,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getCategories, getPosts, sortPostsBy })(PostsOverview);
+export default connect(mapStateToProps, {
+  getCategories,
+  getPosts,
+  sortPostsBy,
+  voteOnPost
+})(PostsOverview);

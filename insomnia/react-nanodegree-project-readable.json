@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2017-08-16T17:07:03.999Z",
+	"__export_date": "2017-08-16T18:28:29.121Z",
 	"__export_source": "insomnia.desktop.app:v5.7.4",
 	"resources": [
 		{
@@ -339,6 +339,40 @@
 			],
 			"authentication": {},
 			"metaSortKey": -1502130554431.6562,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_c1768287f15944c1945b3d68be636caa",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502908093765,
+			"created": 1502908049938,
+			"url": "localhost:5001/posts/8xf0y6ziyjabvozdd253nd",
+			"name": "vote on post",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\t\"option\": \"upVote\"\n\t}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Authorization",
+					"value": "authrozation-header-value",
+					"id": "pair_486cc5dc279448c481ccaf720da0f9a4"
+				},
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_e1f9768819814b6dbd29220e75d9f014"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1502130561388.9688,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
 			"settingDisableRenderRequestBody": false,

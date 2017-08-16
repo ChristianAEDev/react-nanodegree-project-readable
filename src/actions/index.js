@@ -10,6 +10,7 @@ export const GET_POST = 'GET_POST';
 export const GET_POSTS = 'GET_POSTS';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_POST = 'UPDATE_POST';
+export const VOTE_ON_POST = 'VOTE_ON_POST';
 
 const ENDPOINT_URL = 'http://localhost:5001';
 const token = 'authrozation-header-value';
@@ -105,6 +106,22 @@ export function updatePost(post) {
 
   return {
     type: UPDATE_POST,
+    payload: request,
+  };
+}
+
+export function voteOnPost(option, postID) {
+  console.log("voteOnPost", postID)
+  const data = {
+    option,
+  };
+
+  console.log(data)
+
+  const request = axios.post(`${ENDPOINT_URL}/posts/${postID}`, option, config);
+
+  return {
+    type: VOTE_ON_POST,
     payload: request,
   };
 }

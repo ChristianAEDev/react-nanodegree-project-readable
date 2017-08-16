@@ -6,6 +6,7 @@ import {
   GET_POST,
   UPDATE_COMMENT,
   UPDATE_POST,
+  VOTE_ON_POST,
 } from '../actions';
 
 /**
@@ -72,6 +73,12 @@ export default function (state = [], action) {
       // Keep the comments
       updatedPost.comments = state.comments;
       return updatedPost; }
+    case VOTE_ON_POST: {
+      const updatedPost = action.payload.data;
+      // Keep the comments
+      updatedPost.voteScore = state.voteScore;
+      return updatedPost;
+    }  
     default:
       return state;
   }
