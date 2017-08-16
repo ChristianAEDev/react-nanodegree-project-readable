@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Form } from 'semantic-ui-react';
 import Comments from './Comments';
-import { getComments, getPost } from '../actions';
+import { deletePost, getComments, getPost } from '../actions';
 
 class PostView extends Component {
 
@@ -18,12 +18,24 @@ class PostView extends Component {
     }
   }
 
+  onSubmit(values) {
+    // Check wether we want to update or delete a post
+    if (values.isDelete) {
+      deletePost(values.id);
+      // Navigate to the main page after deleting the post
+      this.props.history.push('/');
+    }
+  }
+
   render() {
+    // "handleSubmit" comes from redux-form
+    const { handleSubmit } = this.props;
     const postID = this.props.initialValues.id;
 
     return (
       <div>
-        <Form onSubmit={() => { return console.log('onSubmit'); }}>
+        {/* <Form onSubmit={handleSubmit(this.onSubmit.bind(this))}> */}
+        <Form reply >
           <Form.Field>
             <label>Title</label>
             <div>
@@ -74,7 +86,30 @@ class PostView extends Component {
               />
             </div>
           </Form.Field>
-          <Form.Button primary>Save</Form.Button>
+          <Form.Group>
+            <Form.Button
+              primary
+              icon="save"
+              content="Save"
+              onClick={handleSubmit((values) => {
+                return this.onSubmit({
+                  ...values,
+                  isDelete: false,
+                });
+              })}
+            />
+            <Form.Button
+              color="red"
+              icon="delete"
+              content="Delete"
+              onClick={handleSubmit((values) => {
+                return this.onSubmit({
+                  ...values,
+                  isDelete: true,
+                });
+              })}
+            />
+          </Form.Group>
         </Form>
         <Comments postID={postID} />
       </div>
@@ -86,15 +121,15 @@ function validate(values) {
   const errors = {};
 
   // Validate that all fields are filled
-  if (!values.title) {
-    errors.title = 'Enter a post title';
-  }
-  if (!values.categories) {
-    errors.body = 'Enter a body';
-  }
-  if (!values.content) {
-    errors.author = 'Enter a author';
-  }
+  // if (!values.title) {
+  //   errors.title = 'Enter a post title';
+  // }
+  // if (!values.categories) {
+  //   errors.body = 'Enter a body';
+  // }
+  // if (!values.content) {
+  //   errors.author = 'Enter a author';
+  // }
 
   // Returning an empty errors objects means, that the validation was successful
   // If errors is not empty (has ANY properties) the form will not be submitted

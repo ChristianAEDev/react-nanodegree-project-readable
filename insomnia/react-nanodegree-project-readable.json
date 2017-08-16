@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2017-08-14T17:40:00.770Z",
+	"__export_date": "2017-08-16T16:26:48.885Z",
 	"__export_source": "insomnia.desktop.app:v5.7.4",
 	"resources": [
 		{
@@ -279,6 +279,32 @@
 			],
 			"authentication": {},
 			"metaSortKey": -1502130557910.3125,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_b777130f369946bd872c239ded44e203",
+			"parentId": "wrk_8c64562207ab47a6ba581c75ea41eed4",
+			"modified": 1502900737045,
+			"created": 1502900713383,
+			"url": "localhost:5001/posts/8xf0y6ziyjabvozdd253nd",
+			"name": "delete post",
+			"description": "",
+			"method": "DELETE",
+			"body": {},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Authorization",
+					"value": "authrozation-header-value",
+					"id": "pair_486cc5dc279448c481ccaf720da0f9a4"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1502130580521.5781,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
 			"settingDisableRenderRequestBody": false,

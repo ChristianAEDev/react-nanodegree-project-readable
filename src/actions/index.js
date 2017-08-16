@@ -3,6 +3,7 @@ import axios from 'axios';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const DELETE_POST = 'DELETE_POST';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const GET_POST = 'GET_POST';
@@ -11,7 +12,8 @@ export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 
 const ENDPOINT_URL = 'http://localhost:5001';
 const token = 'authrozation-header-value';
-const config = { headers: { Authorization: token } };
+const headers = { Authorization: token };
+const config = { headers };
 
 export function addComment(comment) {
   const request = axios.post(`${ENDPOINT_URL}/comments`, comment, config);
@@ -27,6 +29,15 @@ export function deleteComment(id) {
 
   return {
     type: DELETE_COMMENT,
+    payload: id,
+  };
+}
+
+export function deletePost(id) {
+  const request = axios.delete(`${ENDPOINT_URL}/posts/${id}`, config);
+
+  return {
+    type: DELETE_POST,
     payload: request,
   };
 }

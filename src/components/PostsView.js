@@ -27,6 +27,10 @@ class PostsOverview extends Component {
     // This variable holds the list of posts to filter. Depending on if we only want to show posts
     // in a certain category, it will be filtered.
     const postsToDisplay = posts.filter((post) => {
+      if (post.deleted === true) {
+        return null;
+      }
+
       if (!categoryName) {
         return post;
       }
