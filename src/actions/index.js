@@ -68,7 +68,6 @@ export function getPosts() {
 }
 
 export function updateComment(comment) {
-  console.log("updatecomment")
   // The server only expects a timestamp and body
   const data = {
     timestamp: comment.timestamp,

@@ -43,17 +43,12 @@ export default function (state = [], action) {
       }
       return action.payload.data;
     case UPDATE_COMMENT:
-      const updatedComment = action.payload;
-
-      console.log("updateCOmment", updatedComment);
-
-
+      const updatedComment = action.payload.data;
       return {
         ...state,
         comments: state.comments.map((comment) => {
           if (updatedComment.id === comment.id) {
-            comment.timestamp = updatedComment.timestamp;
-            comment.body = updatedComment.body;
+            return updatedComment;
           }
           return comment;
         }),

@@ -19,7 +19,6 @@ class Comments extends Component {
 
   onSubmit(values) {
     const { postID } = this.props;
-    console.log(values.id)
     // If we have an ID it is an existing comment that needs to be updated
     if (values.id) {
       this.props.updateComment(values);
@@ -34,8 +33,9 @@ class Comments extends Component {
   }
 
   onEdit(comment) {
+    // This will not be displayed but we need it later to know which comment to update
+    this.props.change('id', comment.id);
     this.props.change('body', comment.body);
-    this.props.change('author', comment.author);
 
     this.props.setCommentButtonMode('edit');
   }
@@ -45,8 +45,6 @@ class Comments extends Component {
     const { handleSubmit } = this.props;
     const { comments } = this.props.post;
     const { sortPostsBy, commentsButtonMode } = this.props.viewState;
-
-    console.log(this.props.form);
 
     return (
       <Comment.Group>
@@ -108,14 +106,6 @@ class Comments extends Component {
               component="input"
               type="text"
               placeholder="Comment"
-            />
-          </Form.Field>
-          <Form.Field >
-            <Field
-              name="author"
-              component="input"
-              type="text"
-              placeholder="Author"
             />
           </Form.Field>
           {commentsButtonMode === 'add' &&
