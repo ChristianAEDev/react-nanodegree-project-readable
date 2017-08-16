@@ -22,10 +22,6 @@ class Comments extends Component {
     // If we have an ID it is an existing comment that needs to be updated
     if (values.id) {
       this.props.updateComment(values);
-      // Cleanup after theupdate
-      this.props.change('id', '');
-      this.props.change('body', '');
-      this.props.setCommentButtonMode('add');
     } else {
       // Assign an ID to the new comment
       values.id = shortid.generate();
@@ -34,6 +30,11 @@ class Comments extends Component {
       // Otherwise it is a new comment to save
       this.props.addComment(values);
     }
+    // Cleanup up
+    this.props.change('id', '');
+    this.props.change('body', '');
+    this.props.change('author', '');
+    this.props.setCommentButtonMode('add');
   }
 
   onEdit(comment) {
@@ -113,12 +114,22 @@ class Comments extends Component {
             />
           </Form.Field>
           {commentsButtonMode === 'add' &&
+          <div>
+            <Form.Field >
+              <Field
+                name="author"
+                component="input"
+                type="text"
+                placeholder="Author"
+              />
+            </Form.Field>
             <Button
               content="Add"
               labelPosition="left"
               icon="add"
               color="green"
-            />}
+            />
+          </div>}
           {commentsButtonMode === 'edit' &&
             <Button
               content="Save"
