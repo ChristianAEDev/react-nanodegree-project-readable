@@ -51,12 +51,17 @@ class Comments extends Component {
     const { comments } = this.props.post;
     const { sortPostsBy, commentsButtonMode } = this.props.viewState;
 
+    let numberOfComments = 0;
+    if (comments && comments.length > 0) {
+      numberOfComments = comments.length;
+    }
+
     return (
       <Comment.Group>
         <Header dividing>
           <Header.Content as="h3">
-            Comments
-            </Header.Content>
+            {numberOfComments} Comments
+          </Header.Content>
           <Menu.Menu position="right">
             <Dropdown text="Sort by" icon="sort" >
               <Dropdown.Menu>
