@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 import shortid from 'shortid';
-import { Button, Dropdown, Grid, Header, Icon, Item, Label, List, Menu } from 'semantic-ui-react';
+import { Button, Dropdown, Grid, Header, Icon, Item, List, Menu } from 'semantic-ui-react';
+import Post from './Post';
 import { getCategories, getComments, getPosts, voteOnPost } from '../actions';
 import { sortPostsBy } from '../actions/ViewStateActions';
 
@@ -94,37 +94,9 @@ class PostsOverview extends Component {
           </Menu>
           <Item.Group divided>
             {
-              // TODO: Check if there is a better way to sort the array by their voteScore.
-              // Ideally without the need of a third party library.
               _.reverse(_.sortBy(postsToDisplay, [sortPostsBy])).map((post) => {
                 return (
-                  <Item key={post.id}>
-                    <Item.Content>
-                      <Link to={`/post/${post.id}`}>
-                        <Item.Header as="h3" >{post.title}</Item.Header>
-                      </Link>
-                      <Item.Meta>
-                        <span className="cinema">{moment(post.timestamp).format('MMMM Do YYYY, hh:mm:ss')} by {post.author}</span>
-                      </Item.Meta>
-                      <Item.Description>{post.body}</Item.Description>
-                      <Item.Extra>
-                        <Label>{post.category}</Label>
-                        {post.voteScore}<Icon color="yellow" name="star" />
-                        <Icon
-                          name="like outline"
-                          color="green"
-                          style={{ cursor: 'pointer' }}
-                          onClick={() => { this.props.voteOnPost('upVote', post.id) }}
-                        />
-                        <Icon
-                          name="dislike outline"
-                          color="red"
-                          style={{ cursor: 'pointer' }}
-                          onClick={() => { this.props.voteOnPost('downVote', post.id) }}
-                        />
-                      </Item.Extra>
-                    </Item.Content>
-                  </Item>
+                  <Post postID={post.id} key={post.id}/>
                 );
               })
             }
