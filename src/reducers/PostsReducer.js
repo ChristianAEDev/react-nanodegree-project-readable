@@ -1,4 +1,4 @@
-import { GET_POSTS } from '../actions';
+import { GET_POSTS, VOTE_ON_POST } from '../actions';
 
 /**
  * Handles the data coming from an action creating a new state from it. Since the state is never to
@@ -15,6 +15,15 @@ export default function (state = [], action) {
         return {};
       }
       return action.payload.data;
+    case VOTE_ON_POST:
+      const updatedPost = action.payload.data;
+
+      return state.map((post) => {
+        if (updatedPost.id === post.id) {
+          return updatedPost;
+        }
+        return post;
+      });
     default:
       return state;
   }

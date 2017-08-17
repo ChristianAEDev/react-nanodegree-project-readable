@@ -116,6 +116,7 @@ class PostsOverview extends Component {
                         <Icon
                           name="like outline"
                           color="green"
+                          style={{ cursor: 'pointer' }}
                           onClick={() => { this.props.voteOnPost('upVote', post.id) }}
                         />
                         <Icon

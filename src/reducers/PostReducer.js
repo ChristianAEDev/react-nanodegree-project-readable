@@ -4,6 +4,7 @@ import {
   DELETE_POST,
   GET_COMMENTS,
   GET_POST,
+  RESET_STATE,
   UPDATE_COMMENT,
   UPDATE_POST,
   VOTE_ON_POST,
@@ -57,6 +58,8 @@ export default function (state = [], action) {
         return state;
       }
       return action.payload.data;
+    case RESET_STATE:
+      return [];
     case UPDATE_COMMENT: {
       const updatedComment = action.payload.data;
       return {
@@ -67,18 +70,24 @@ export default function (state = [], action) {
           }
           return comment;
         }),
-      }; }
+      };
+    }
     case UPDATE_POST: {
       const updatedPost = action.payload.data;
-      // Keep the comments
-      updatedPost.comments = state.comments;
-      return updatedPost; }
+      if ( state && state.comments) {
+        // Keep the comments
+        updatedPost.comments = state.comments;
+      }
+      return updatedPost;
+    }
     case VOTE_ON_POST: {
       const updatedPost = action.payload.data;
-      // Keep the comments
-      updatedPost.voteScore = state.voteScore;
+      if ( state && state.comments) {
+        // Keep the comments
+        updatedPost.comments = state.comments;
+      }
       return updatedPost;
-    }  
+    }
     default:
       return state;
   }

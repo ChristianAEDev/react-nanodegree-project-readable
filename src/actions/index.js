@@ -8,6 +8,7 @@ export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const GET_POST = 'GET_POST';
 export const GET_POSTS = 'GET_POSTS';
+export const RESET_STATE = 'RESET_STATE';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_POST = 'UPDATE_POST';
 export const VOTE_ON_POST = 'VOTE_ON_POST';
@@ -28,7 +29,7 @@ export function addComment(comment) {
 
 export function deleteComment(id) {
   const request = axios.delete(`${ENDPOINT_URL}/comments/${id}`, config);
-
+  
   return {
     type: DELETE_COMMENT,
     payload: id,
@@ -37,7 +38,7 @@ export function deleteComment(id) {
 
 export function deletePost(id) {
   const request = axios.delete(`${ENDPOINT_URL}/posts/${id}`, config);
-
+  
   return {
     type: DELETE_POST,
     payload: request,
@@ -46,7 +47,7 @@ export function deletePost(id) {
 
 export function getCategories() {
   const request = axios.get(`${ENDPOINT_URL}/categories`, config);
-
+  
   return {
     type: GET_CATEGORIES,
     payload: request,
@@ -55,7 +56,7 @@ export function getCategories() {
 
 export function getComments(postID) {
   const request = axios.get(`${ENDPOINT_URL}/posts/${postID}/comments`, config);
-
+  
   return {
     type: GET_COMMENTS,
     payload: request,
@@ -64,7 +65,7 @@ export function getComments(postID) {
 
 export function getPost(postID) {
   const request = axios.get(`${ENDPOINT_URL}/posts/${postID}`, config);
-
+  
   return {
     type: GET_POST,
     payload: request,
@@ -73,11 +74,17 @@ export function getPost(postID) {
 
 export function getPosts() {
   const request = axios.get(`${ENDPOINT_URL}/posts`, config);
-
+  
   return {
     type: GET_POSTS,
     payload: request,
   };
+}
+
+export function resetState() {
+  return {
+    type: RESET_STATE,
+  }
 }
 
 export function updateComment(comment) {
@@ -86,9 +93,9 @@ export function updateComment(comment) {
     timestamp: comment.timestamp,
     body: comment.body,
   };
-
+  
   const request = axios.put(`${ENDPOINT_URL}/comments/${comment.id}`, data, config);
-
+  
   return {
     type: UPDATE_COMMENT,
     payload: request,
@@ -111,14 +118,11 @@ export function updatePost(post) {
 }
 
 export function voteOnPost(option, postID) {
-  console.log("voteOnPost", postID)
   const data = {
     option,
   };
 
-  console.log(data)
-
-  const request = axios.post(`${ENDPOINT_URL}/posts/${postID}`, option, config);
+  const request = axios.post(`${ENDPOINT_URL}/posts/${postID}`, data, config);
 
   return {
     type: VOTE_ON_POST,

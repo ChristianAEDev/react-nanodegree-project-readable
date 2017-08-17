@@ -1,6 +1,7 @@
 import {
   POSTS_OVERVIEW_SORT_POSTS_BY_SELECTION,
   SET_COMMENTS_BUTTON_MODE,
+  SET_POST_EDIT_MODE,
 } from '../actions/ViewStateActions';
 
 /**
@@ -9,6 +10,7 @@ import {
 const defaultState = {
   sortPostsBy: 'voteScore',
   commentsButtonMode: 'add',
+  postEditMode: "add",
 };
 
 export default function (state = defaultState, action) {
@@ -23,6 +25,11 @@ export default function (state = defaultState, action) {
         ...state,
         commentsButtonMode: action.payload,
       };
+    case SET_POST_EDIT_MODE:
+      return {
+        ...state,
+        postEditMode: action.payload
+      }
     default:
       return state;
   }
