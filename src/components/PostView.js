@@ -123,19 +123,23 @@ class PostView extends Component {
                 })}
               />
             }
-            <Icon
-              name="like outline"
-              color="green"
-              size="big"
-              onClick={() => { this.props.voteOnPost('upVote', postID) }}
-            />
-            <Icon
-              name="dislike outline"
-              color="red"
-              size="big"
-              style={{ cursor: 'pointer' }}
-              onClick={() => { this.props.voteOnPost('downVote', postID) }}
-            />
+            {(postEditMode === 'edit' || postEditMode === 'view') &&
+              <div>
+                <Icon
+                  name="like outline"
+                  color="green"
+                  size="big"
+                  onClick={() => { this.props.voteOnPost('upVote', postID) }}
+                />
+                <Icon
+                  name="dislike outline"
+                  color="red"
+                  size="big"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => { this.props.voteOnPost('downVote', postID) }}
+                />
+              </div>
+            }
           </Form.Group>
         </Form>
         <Comments postID={postID} />

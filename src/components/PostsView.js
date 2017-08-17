@@ -2,11 +2,10 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import shortid from 'shortid';
 import { Button, Dropdown, Grid, Header, Icon, Item, Label, List, Menu } from 'semantic-ui-react';
-import { getCategories, getPosts, voteOnPost } from '../actions';
+import { getCategories, getComments, getPosts, voteOnPost } from '../actions';
 import { sortPostsBy } from '../actions/ViewStateActions';
 
 class PostsOverview extends Component {
@@ -76,8 +75,6 @@ class PostsOverview extends Component {
               <Menu.Item>
                 <Dropdown text="Sort by" icon="sort" >
                   <Dropdown.Menu>
-                    {/* TODO: Add an icon to indicate what sort is used and how its currently
-                sorted  */}
                     <Dropdown.Item
                       value="voteScore"
                       text="Score"
@@ -138,17 +135,6 @@ class PostsOverview extends Component {
   }
 }
 
-// TODO: eslint rules disabled
-PostsOverview.propTypes = {
-  categories: PropTypes.array.isRequired,  // eslint-disable-line react/forbid-prop-types
-  categoryName: PropTypes.string,
-  posts: PropTypes.array.isRequired,  // eslint-disable-line react/forbid-prop-types
-  getCategories: PropTypes.func.isRequired,
-  getPosts: PropTypes.func.isRequired,
-  sortPostsBy: PropTypes.func.isRequired,
-  viewState: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-};
-
 /**
  * Function necessary for react-redux to have the props from the state available in the component.
  * @param {*} state
@@ -163,6 +149,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   getCategories,
+  getComments,
   getPosts,
   sortPostsBy,
   voteOnPost

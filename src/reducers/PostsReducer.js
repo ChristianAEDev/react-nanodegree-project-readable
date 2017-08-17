@@ -1,4 +1,4 @@
-import { GET_POSTS, VOTE_ON_POST } from '../actions';
+import { GET_COMMENTS, GET_POSTS, VOTE_ON_POST } from '../actions';
 
 /**
  * Handles the data coming from an action creating a new state from it. Since the state is never to
@@ -8,9 +8,25 @@ import { GET_POSTS, VOTE_ON_POST } from '../actions';
  */
 export default function (state = [], action) {
   switch (action.type) {
+    case GET_COMMENTS:
+      // All comments returned here are always for the same post
+      let comments = action.payload.data;
+
+      if (comments && comments.length > 0) {
+        let parentID = comments[0].parentId
+
+        return state.map(post => {
+          if (post.id === parentID) {
+            return {
+              ...post,
+              comments: comments
+            };
+          }
+          return post
+        });
+      }
+      return state;
     case GET_POSTS:
-      // In case of an error we return an empty state
-      // TODO: Is it better to return the previous state? What happens in the UI?
       if (action && action.error) {
         return {};
       }
