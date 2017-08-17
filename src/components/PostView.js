@@ -12,8 +12,6 @@ class PostView extends Component {
     // Read the id of the post to load from the URL
     const { postID } = this.props.match.params;
 
-    console.log(postID)
-
     if (postID) {
       this.props.setPostEditMode('view')
       // Load the post from back end
@@ -44,8 +42,6 @@ class PostView extends Component {
     const { postEditMode } = this.props.viewState;
     const postID = this.props.initialValues.id;
     const { post } = this.props;
-
-    console.log(postEditMode)
 
     return (
       <div>

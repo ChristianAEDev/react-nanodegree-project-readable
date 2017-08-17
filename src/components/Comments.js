@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import moment from 'moment';
 import shortid from 'shortid';
 import { Button, Comment, Dropdown, Form, Header, Icon, Menu } from 'semantic-ui-react';
-import { addComment, deleteComment, getComments, updateComment } from '../actions';
+import { addComment, deleteComment, getComments, updateComment, voteOnComment } from '../actions';
 import { setCommentButtonMode, sortPostsBy } from '../actions/ViewStateActions';
 
 
@@ -94,6 +94,18 @@ class Comments extends Component {
                 <Comment.Action onClick={() => { this.props.deleteComment(comment.id); }} >
                   Delete
                 </Comment.Action>
+                <Icon
+                  name="like outline"
+                  color="green"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => { this.props.voteOnComment('upVote', comment.id) }}
+                />
+                <Icon
+                  name="dislike outline"
+                  color="red"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => { this.props.voteOnComment('downVote', comment.id) }}
+                />
               </Comment.Actions>
             </Comment>
           );
@@ -114,22 +126,22 @@ class Comments extends Component {
             />
           </Form.Field>
           {commentsButtonMode === 'add' &&
-          <div>
-            <Form.Field >
-              <Field
-                name="author"
-                component="input"
-                type="text"
-                placeholder="Author"
+            <div>
+              <Form.Field >
+                <Field
+                  name="author"
+                  component="input"
+                  type="text"
+                  placeholder="Author"
+                />
+              </Form.Field>
+              <Button
+                content="Add"
+                labelPosition="left"
+                icon="add"
+                color="green"
               />
-            </Form.Field>
-            <Button
-              content="Add"
-              labelPosition="left"
-              icon="add"
-              color="green"
-            />
-          </div>}
+            </div>}
           {commentsButtonMode === 'edit' &&
             <Button
               content="Save"
@@ -167,6 +179,7 @@ export default connect(mapStateToProps,
     setCommentButtonMode,
     sortPostsBy,
     updateComment,
+    voteOnComment,
   },
 )(reduxForm({
   validate,

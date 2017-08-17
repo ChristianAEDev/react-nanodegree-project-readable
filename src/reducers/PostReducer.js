@@ -7,6 +7,7 @@ import {
   RESET_STATE,
   UPDATE_COMMENT,
   UPDATE_POST,
+  VOTE_ON_COMMENT,
   VOTE_ON_POST,
 } from '../actions';
 
@@ -74,15 +75,26 @@ export default function (state = [], action) {
     }
     case UPDATE_POST: {
       const updatedPost = action.payload.data;
-      if ( state && state.comments) {
+      if (state && state.comments) {
         // Keep the comments
         updatedPost.comments = state.comments;
       }
       return updatedPost;
     }
+    case VOTE_ON_COMMENT:
+      const updatedComment = action.payload.data;
+      return {
+        ...state,
+        comments: state.comments.map((comment) => {
+          if (updatedComment.id === comment.id) {
+            return updatedComment;
+          }
+          return comment;
+        }),
+      };
     case VOTE_ON_POST: {
       const updatedPost = action.payload.data;
-      if ( state && state.comments) {
+      if (state && state.comments) {
         // Keep the comments
         updatedPost.comments = state.comments;
       }
