@@ -52,6 +52,11 @@ class PostsOverview extends Component {
             </Header.Content>
           </Header>
           <List>
+            <List.Item>
+              <Link to="/" >
+              <b>All</b>
+              </Link>
+            </List.Item>
             {this.props.categories.map((category) => {
               return (
                 <List.Item key={shortid.generate()} >
@@ -96,7 +101,7 @@ class PostsOverview extends Component {
             {
               _.reverse(_.sortBy(postsToDisplay, [sortPostsBy])).map((post) => {
                 return (
-                  <Post postID={post.id} key={post.id}/>
+                  <Post postID={post.id} key={post.id} />
                 );
               })
             }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import moment from 'moment';
 import { Form, Icon } from 'semantic-ui-react';
 import Comments from './Comments';
 import { deletePost, getComments, getPost, resetState, updatePost, voteOnPost } from '../actions';
@@ -34,6 +35,16 @@ class PostView extends Component {
       this.props.updatePost(values);
       this.props.setPostEditMode('view')
     }
+  }
+
+  renderTimestampField(field) {
+    return (
+      // "{...field.input} hooks up the element to react-redux "
+      <Form.Field {...field.input}>
+        <label>{field.label}</label>
+        <label>{moment(field.value).format('MMMM Do YYYY, hh:mm:ss')}</label>
+      </Form.Field>
+    );
   }
 
   render() {
@@ -77,8 +88,7 @@ class PostView extends Component {
             <div>
               <Field
                 name="timestamp"
-                component="input"
-                type="text"
+                component={this.renderTimestampField}
               />
             </div>
           </Form.Field>
