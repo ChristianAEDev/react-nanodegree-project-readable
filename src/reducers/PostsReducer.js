@@ -1,4 +1,4 @@
-import { GET_COMMENTS, GET_POSTS, VOTE_ON_POST } from '../actions';
+import { ADD_POST, GET_COMMENTS, GET_POSTS, VOTE_ON_POST } from '../actions';
 
 /**
  * Handles the data coming from an action creating a new state from it. Since the state is never to
@@ -8,6 +8,8 @@ import { GET_COMMENTS, GET_POSTS, VOTE_ON_POST } from '../actions';
  */
 export default function (state = [], action) {
   switch (action.type) {
+    case ADD_POST:
+      return [...state, action.payload.data];
     case GET_COMMENTS:
       // All comments returned here are always for the same post
       let comments = action.payload.data;

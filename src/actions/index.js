@@ -28,6 +28,14 @@ export function addComment(comment) {
   };
 }
 
+export function addPost(post) {
+  const request = axios.post(`${ENDPOINT_URL}/posts`, post, config);
+  return {
+    type: ADD_POST,
+    payload: request,
+  }
+}
+
 export function deleteComment(id) {
   axios.delete(`${ENDPOINT_URL}/comments/${id}`, config);
 

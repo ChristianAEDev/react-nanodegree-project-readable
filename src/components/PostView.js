@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import moment from 'moment';
+import shortid from 'shortid';
 import { Form, Icon } from 'semantic-ui-react';
 import Comments from './Comments';
-import { deletePost, getComments, getPost, resetState, updatePost, voteOnPost } from '../actions';
+import { addPost, deletePost, getComments, getPost, resetState, updatePost, voteOnPost } from '../actions';
 import { setPostEditMode } from '../actions/ViewStateActions';
 
 class PostView extends Component {
@@ -31,9 +32,14 @@ class PostView extends Component {
       deletePost(values.id);
       // Navigate to the main page after deleting the post
       this.props.history.push('/');
-    } else {
+    } else if(this.props.viewState.commentsButtonMode === 'edit') {
       this.props.updatePost(values);
       this.props.setPostEditMode('view')
+    }else{
+      values.id = shortid.generate();
+      this.props.addPost(values);
+      this.props.setPostEditMode('view')
+      this.props.history.push('/');
     }
   }
 
@@ -190,6 +196,7 @@ function mapStateToProps(state) {
  * setting "initialValues" will not work!
  */
 export default connect(mapStateToProps, {
+  addPost,
   deletePost,
   getComments,
   getPost,

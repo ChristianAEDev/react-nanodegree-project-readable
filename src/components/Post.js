@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Icon, Item, Label } from 'semantic-ui-react';
-import { getComments, getPost } from '../actions'
+import { getComments, getPost, voteOnPost } from '../actions'
 
 
 class Post extends Component {
@@ -69,4 +69,4 @@ function mapStateToProps(state, props) {
   };
 }
 
-export default connect(mapStateToProps, { getComments, getPost })(Post);
+export default connect(mapStateToProps, { getComments, getPost, voteOnPost })(Post);

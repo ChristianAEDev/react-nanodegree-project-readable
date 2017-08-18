@@ -20,29 +20,22 @@ import {
 export default function (state = [], action) {
   switch (action.type) {
     case ADD_COMMENT:
-      if (action && action.error) {
-        return state;
-      }
       if (state.comments) {
         return {
           ...state,
           comments: [...state.comments, action.payload.data],
         };
       }
-
       return {
         ...state,
         comments: [action.payload.data]
       }
     case DELETE_COMMENT:
-      if (action && action.error) {
-        return state;
-      }
       return {
         ...state,
         // comments: _.omit(...state.comments, action.payload.data),
         comments: state.comments.filter(
-          (comment) => { return comment.id !== action.payload.data.id; },
+          (comment) => { return comment.id !== action.payload; },
         ),
       };
     case DELETE_POST:
