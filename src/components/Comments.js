@@ -8,10 +8,7 @@ import { Button, Comment, Dropdown, Form, Header, Icon, Menu } from 'semantic-ui
 import { addComment, deleteComment, getComments, updateComment, voteOnComment } from '../actions';
 import { setCommentButtonMode, sortPostsBy } from '../actions/ViewStateActions';
 
-
 class Comments extends Component {
-
-
   componentDidMount() {
     const { postID } = this.props;
     this.props.getComments(postID);
@@ -103,13 +100,13 @@ class Comments extends Component {
                   name="like outline"
                   color="green"
                   style={{ cursor: 'pointer' }}
-                  onClick={() => { this.props.voteOnComment('upVote', comment.id) }}
+                  onClick={() => { this.props.voteOnComment('upVote', comment.id); }}
                 />
                 <Icon
                   name="dislike outline"
                   color="red"
                   style={{ cursor: 'pointer' }}
-                  onClick={() => { this.props.voteOnComment('downVote', comment.id) }}
+                  onClick={() => { this.props.voteOnComment('downVote', comment.id); }}
                 />
               </Comment.Actions>
             </Comment>

@@ -23,10 +23,17 @@ export default function (state = [], action) {
       if (action && action.error) {
         return state;
       }
+      if (state.comments) {
+        return {
+          ...state,
+          comments: [...state.comments, action.payload.data],
+        };
+      }
+
       return {
         ...state,
-        comments: [...state.comments, action.payload.data],
-      };
+        comments: [action.payload.data]
+      }
     case DELETE_COMMENT:
       if (action && action.error) {
         return state;
@@ -45,19 +52,14 @@ export default function (state = [], action) {
         }),
       };
     case GET_COMMENTS:
-      if (action && action.error) {
-        return state;
-      }
-      return {
+      let newState = {
         ...state,
         comments: action.payload.data,
       };
+      return newState
     case GET_POST:
-      // In case of an error we return an empty state
-      // TODO: Is it better to return the previous state? What happens in the UI?
-      if (action && action.error) {
-        return state;
-      }
+      let newState2 = action.payload.data;
+      newState2.comments = state.comments
       return action.payload.data;
     case RESET_STATE:
       return [];

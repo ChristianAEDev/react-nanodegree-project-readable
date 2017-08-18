@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,13 +11,13 @@ class Post extends Component {
 
   componentDidMount() {
     const { postID } = this.props;
-    this.props.getPost(postID);
     this.props.getComments(postID);
   }
 
   render() {
-    const { post } = this.props;
-    const { comments } = this.props.post;
+    const index = _.findIndex(this.props.posts, { 'id': this.props.postID })
+    const post = this.props.posts[index];
+    const { comments } = post;
 
     let numberOfComments = 0;
     if (comments && comments.length > 0) {
@@ -60,9 +61,9 @@ class Post extends Component {
  * Function necessary for react-redux to have the props from the state available in the component.
  * @param {*} state
  */
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
   return {
-    post: state.post,
+    posts: state.posts,
     categories: state.categories,
     viewState: state.viewState,
   };
