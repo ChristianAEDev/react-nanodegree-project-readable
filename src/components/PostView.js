@@ -32,10 +32,10 @@ class PostView extends Component {
       deletePost(values.id);
       // Navigate to the main page after deleting the post
       this.props.history.push('/');
-    } else if(this.props.viewState.commentsButtonMode === 'edit') {
+    } else if (this.props.viewState.commentsButtonMode === 'edit') {
       this.props.updatePost(values);
       this.props.setPostEditMode('view')
-    }else{
+    } else {
       values.id = shortid.generate();
       this.props.addPost(values);
       this.props.setPostEditMode('view')
@@ -50,6 +50,27 @@ class PostView extends Component {
         <label>{field.label}</label>
         <label>{moment(field.value).format('MMMM Do YYYY, hh:mm:ss')}</label>
       </Form.Field>
+    );
+  }
+
+  renderCategoryDropdown(field) {
+    console.log('field', field.input.value)
+    if (field.input.value.length < 1) {
+      // this.props.change('category', 'redux');
+    }
+
+    return (
+      <Form.Select {...field.input}
+        name="category"
+        label={field.label}
+        value={field.input.value}
+        options={[
+          { key: 'react', text: 'react', value: 'react' },
+          { key: 'redux', text: 'redux', value: 'redux' },
+          { key: 'udacity', text: 'udacity', value: 'udacity' },
+        ]}
+        onChange={(event, data) => { this.props.change('category', data.value); }}
+        placeholder='Category' />
     );
   }
 
@@ -97,6 +118,13 @@ class PostView extends Component {
                 component={this.renderTimestampField}
               />
             </div>
+          </Form.Field>
+          <Form.Field disabled={!(postEditMode === 'add')}>
+            <Field
+              name="category"
+              label="Category"
+              component={this.renderCategoryDropdown.bind(this)}
+            />
           </Form.Field>
           <Form.Field disabled>
             <label>Score</label>
@@ -164,25 +192,6 @@ class PostView extends Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
-
-  // Validate that all fields are filled
-  // if (!values.title) {
-  //   errors.title = 'Enter a post title';
-  // }
-  // if (!values.categories) {
-  //   errors.body = 'Enter a body';
-  // }
-  // if (!values.content) {
-  //   errors.author = 'Enter a author';
-  // }
-
-  // Returning an empty errors objects means, that the validation was successful
-  // If errors is not empty (has ANY properties) the form will not be submitted
-  return errors;
-}
-
 function mapStateToProps(state) {
   return ({
     post: state.post,
@@ -205,7 +214,6 @@ export default connect(mapStateToProps, {
   updatePost,
   voteOnPost
 })(reduxForm({
-  validate,
   form: 'PostForm', // a unique identifier for this form
   enableReinitialize: true,
 })(PostView));
