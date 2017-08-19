@@ -54,11 +54,6 @@ class PostView extends Component {
   }
 
   renderCategoryDropdown(field) {
-    console.log('field', field.input.value)
-    if (field.input.value.length < 1) {
-      // this.props.change('category', 'redux');
-    }
-
     return (
       <Form.Select {...field.input}
         name="category"
