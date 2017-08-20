@@ -30,7 +30,7 @@ export default function (state = [], action) {
       return state;
     case GET_POSTS:
       if (action && action.error) {
-        return {};
+        return [];
       }
       return action.payload.data;
     case VOTE_ON_POST:
