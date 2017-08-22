@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import shortid from 'shortid';
 import { Form, Icon } from 'semantic-ui-react';
@@ -75,6 +76,16 @@ class PostView extends Component {
     const { postEditMode } = this.props.viewState;
     const postID = this.props.initialValues.id;
     const { post } = this.props;
+
+    if (post.deleted === true) {
+      return (
+        <div>
+          <h1>Post Not Found</h1>
+          <p>Sorry, looks like what you are looking for does not exist anymore.</p>
+          <p><Link to="/">Back to Home</Link></p>
+        </div>
+      );
+    }
 
     return (
       <div>

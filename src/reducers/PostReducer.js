@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   ADD_COMMENT,
   DELETE_COMMENT,
@@ -51,6 +52,12 @@ export default function (state = [], action) {
       };
       return newState
     case GET_POST:
+      // If we get an empty response it means that the post does not exist
+      if (_.isEmpty(action.payload.data)) {
+        return (
+          { deleted: true }
+        );
+      }
       let newState2 = action.payload.data;
       newState2.comments = state.comments
       return action.payload.data;
